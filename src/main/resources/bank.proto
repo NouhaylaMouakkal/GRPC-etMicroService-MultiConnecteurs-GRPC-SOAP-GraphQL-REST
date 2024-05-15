@@ -1,0 +1,20 @@
+syntax="proto3";
+option java_package="ma.enset.stubs";
+service BankService{
+  rpc convert(ConvertCurrencyRequest) returns (ConvertCurrencyResponse);
+  rpc getCurrencyStream(ConvertCurrencyRequest) returns (stream ConvertCurrencyResponse); //server streaming
+  rpc performStream(stream ConvertCurrencyRequest) returns (ConvertCurrencyResponse); //client streaming
+  rpc fullCurrencyStream(stream ConvertCurrencyRequest) returns (stream ConvertCurrencyResponse); //server et client streaming
+
+}
+message ConvertCurrencyRequest{
+string currencyFrom=1;
+  string currencyTo=2;
+  double amount=3;
+}
+message ConvertCurrencyResponse{
+  string currencyFrom=1;
+  string currencyTo=2;
+  double amount=3;
+  double result = 4;
+}
